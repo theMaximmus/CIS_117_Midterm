@@ -8,6 +8,16 @@
 #
 # 3. Samantha Chin
 
+# Constants for the food prices
+PRICE_DE_ANZA_BURGER = 5.25 # De Anza Burger
+PRICE_BACON_CHEESE = 5.75 # Bacon Cheese
+PRICE_MUSHROOM_SWISS = 5.95 # Mushroom Swiss
+PRICE_WESTERN_BURGER = 5.95 # Western Burger
+PRICE_DON_CALI_BURGER = 5.95 # Don Cali Burger
+
+# Constants for the tax
+TAX = 0.09
+
 def display_menu():
     '''
     Displays the menu options for the Food Court
