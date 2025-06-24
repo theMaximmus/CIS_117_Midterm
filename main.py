@@ -52,6 +52,8 @@ def get_inputs():
             # Take in the first value
             user_menu_choice = int(input("What burger do you want? (Enter 1-5): "))
 
+            if (user_menu_choice == 6):
+                break
             loopFlag = True
         except ValueError:
             print("Error, please enter numeric input")
@@ -79,6 +81,12 @@ def get_inputs():
         quantity4 += amount
     elif (user_menu_choice == 5):
         quantity5 += amount
+
+    isStudentString = input("Are you a student? (y/n):")
+    if (isStudentString == "y"):
+        isStudent = True
+    else:
+        isStudent = False
 
     return quantity1, quantity2, quantity3, quantity4, quantity5
 
