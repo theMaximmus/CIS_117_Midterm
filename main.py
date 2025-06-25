@@ -88,14 +88,31 @@ def get_inputs():
     else:
         isStudent = False
 
-    return quantity1, quantity2, quantity3, quantity4, quantity5
+    return quantity1, quantity2, quantity3, quantity4, quantity5, isStudent
 
 
-def compute_bill():
+def compute_bill(quantity1, quantity2, quantity3, quantity4, quantity5, isStudent):
     '''
     Computes the bill
     :return:
     '''
+    burger1 = quantity1 * PRICE_DE_ANZA_BURGER
+    burger2 = quantity2 * PRICE_BACON_CHEESE
+    burger3 = quantity3 * PRICE_MUSHROOM_SWISS
+    burger4 = quantity4 * PRICE_WESTERN_BURGER
+    burger5 = quantity5 * PRICE_DON_CALI_BURGER
+
+    # calculating the total bill
+    price_before_tax = burger1 + burger2 + burger3 + burger4 + burger5
+
+    # factoring in tax
+    if isStudent == False:
+        order_tax = TAX * price_before_tax
+    else:
+        order_tax = 0
+
+    price_after_tax = float(price_before_tax) + order_tax
+    return price_before_tax, price_after_tax
 
 def print_bill():
     '''
@@ -105,6 +122,7 @@ def print_bill():
 
 def main():
     result = get_inputs()
+    price_before_tax, price_after_tax = compute_bill(quantity1, quantity2, quantity3, quantity4, quantity5, isStudent)
     print(result)
 
 main()
