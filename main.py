@@ -1,12 +1,7 @@
-# Team Name: SF Pythons
+# CIS117 - Midterm Part 1 - Maksym Stesev, Micole Chen, Samantha Chin (Team SF Pythons)
 #
-# Team Members:
 #
-# 1. Maksym Stesev
-#
-# 2. Micole Chen
-#
-# 3. Samantha Chin
+
 
 # Constants for the food prices
 PRICE_DE_ANZA_BURGER = 5.25 # De Anza Burger
