@@ -43,14 +43,16 @@ def get_inputs():
     # Loop through the input for the first time
     while not loopFlag:
         try:
-            # Take in the first value
+            # Ask for the choice of the burger or if the user wants to exit
             user_menu_choice = int(input("What burger do you want? (Enter 1-5): "))
 
+            # Check if user wants to exit and terminate the process (return a None value)
             if (user_menu_choice == 6):
-                break
+                return None
+            # End the loop
             loopFlag = True
         except ValueError:
-            print("Error, please enter numeric input")
+            print("Error, please enter numeric input.")
 
     # Reset flag variable
     loopFlag = False
@@ -58,13 +60,15 @@ def get_inputs():
     # Loop through the input for the second time
     while not loopFlag:
         try:
-            # Take in the second value
-            amount = int(input("How many of it do you want? "))
+            # Ask for the quantity
+            amount = int(input("How many of it do you want? (Enter a number): "))
 
+            # End the loop
             loopFlag = True
         except ValueError:
-            print("Error, please enter numeric input")
+            print("Error, please enter numeric input.")
 
+    # Determine what item was selected and add desired quantity
     if (user_menu_choice == 1):
         quantity1 += amount
     elif (user_menu_choice == 2):
@@ -76,27 +80,30 @@ def get_inputs():
     elif (user_menu_choice == 5):
         quantity5 += amount
 
-    isStudentString = input("Are you a student? (y/n):")
+    # Ask user if they are a Student
+    isStudentString = input("Are you a student? (y/n): ")
     if (isStudentString == "y"):
         isStudent = True
     else:
         isStudent = False
 
+    # Return the values
     return quantity1, quantity2, quantity3, quantity4, quantity5, isStudent
 
 
-def compute_bill(quantity1, quantity2, quantity3, quantity4, quantity5, isStudent):
+def compute_bill(user_input):
     '''
     Computes the bill
     :return:
     '''
-    burger1 = quantity1 * PRICE_DE_ANZA_BURGER
-    burger2 = quantity2 * PRICE_BACON_CHEESE
-    burger3 = quantity3 * PRICE_MUSHROOM_SWISS
-    burger4 = quantity4 * PRICE_WESTERN_BURGER
-    burger5 = quantity5 * PRICE_DON_CALI_BURGER
+    burgers = [0, 0, 0, 0, 0]
+    for i in range(0, 5):
+        burgers[i] = user_input[i]
 
     # calculating the total bill
+    prices = [0.0, 0.0, 0.0, 0.0, 0.0]
+    for item in burgers:
+        prices[i]
     price_before_tax = burger1 + burger2 + burger3 + burger4 + burger5
 
     # factoring in tax
@@ -105,18 +112,30 @@ def compute_bill(quantity1, quantity2, quantity3, quantity4, quantity5, isStuden
     else:
         order_tax = 0
 
+    # Calculate the price after tax
     price_after_tax = float(price_before_tax) + order_tax
-    return price_before_tax, price_after_tax
 
-def print_bill():
+    # Return the values
+    return order_tax, price_before_tax, price_after_tax
+
+def print_bill(items, tax_amount, price_before_tax, price_after_tax):
     '''
     Prints the bill to the user
     :return:
     '''
 
+    print("*" * 10)
+    print("Your bill:")
+    print("You ordered:")
+    print()
+
 def main():
-    result = get_inputs()
-    price_before_tax, price_after_tax = compute_bill(quantity1, quantity2, quantity3, quantity4, quantity5, isStudent)
-    print(result)
+    display_menu()
+    user_input = get_inputs()
+    tax_amount, price_before_tax, price_after_tax = compute_bill(user_input)
+    print_bill(user_input, tax_amount, price_before_tax, price_after_tax)
+    print(user_input)
+    print(price_before_tax)
+    print(price_after_tax)
 
 main()
