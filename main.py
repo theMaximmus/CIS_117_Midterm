@@ -2,7 +2,6 @@
 #
 #
 
-
 # Constants for the food prices
 PRICE_DE_ANZA_BURGER = 5.25 # De Anza Burger
 PRICE_BACON_CHEESE = 5.75 # Bacon Cheese
