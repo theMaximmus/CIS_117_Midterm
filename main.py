@@ -1,5 +1,5 @@
-# CIS117 - Midterm Part 1 - Maksym Stesev, Micole Chen, Samantha Chin (Team SF Pythons)
-#
+# CIS117 - Midterm Part 1 - Maksym Stesev, Micole Chen, Samantha Chin
+# Team: SF Pythons
 #
 
 # Constants for the food prices
@@ -8,7 +8,8 @@ PRICE_BACON_CHEESE = 5.75 # Bacon Cheese
 PRICE_MUSHROOM_SWISS = 5.95 # Mushroom Swiss
 PRICE_WESTERN_BURGER = 5.95 # Western Burger
 PRICE_DON_CALI_BURGER = 5.95 # Don Cali Burger
-
+PRICES_LIST = [PRICE_DE_ANZA_BURGER, PRICE_BACON_CHEESE, PRICE_MUSHROOM_SWISS,
+               PRICE_WESTERN_BURGER, PRICE_DON_CALI_BURGER]
 # Constants for the tax
 TAX = 0.09
 
@@ -44,11 +45,11 @@ def get_inputs():
     while not loopFlag:
         try:
             # Ask for the choice of the burger or if the user wants to exit
-            user_menu_choice = int(input("What burger do you want? (Enter 1-5): "))
+            user_menu_choice = int(input("What burger do you want? (Enter 1-5, 6 to exit): "))
 
             # Check if user wants to exit and terminate the process (return a None value)
             if (user_menu_choice == 6):
-                return None
+                return 0, 0, 0, 0, 0, False
             # End the loop
             loopFlag = True
         except ValueError:
@@ -90,30 +91,29 @@ def get_inputs():
     # Return the values
     return quantity1, quantity2, quantity3, quantity4, quantity5, isStudent
 
-
-def compute_bill(user_input):
+def compute_bill(user_input, isStudent):
     '''
     Computes the bill
     :return:
     '''
-    burgers = [0, 0, 0, 0, 0]
+    # Copy paste the amount for each choice from the menu
+    choices_amounts = [0, 0, 0, 0, 0]
     for i in range(0, 5):
-        burgers[i] = user_input[i]
+        choices_amounts[i] = user_input[i]
 
-    # calculating the total bill
-    prices = [0.0, 0.0, 0.0, 0.0, 0.0]
-    for item in burgers:
-        prices[i]
-    price_before_tax = burger1 + burger2 + burger3 + burger4 + burger5
+    # Calculate the total bill
+    price_before_tax = 0.0
+    for i in choices_amounts:
+        price_before_tax += choices_amounts[i] * PRICES_LIST[i]
 
-    # factoring in tax
-    if isStudent == False:
-        order_tax = TAX * price_before_tax
-    else:
+    # Apply taxes as needed
+    if isStudent:
         order_tax = 0
+    else:
+        order_tax = TAX * price_before_tax
 
     # Calculate the price after tax
-    price_after_tax = float(price_before_tax) + order_tax
+    price_after_tax = price_before_tax + order_tax
 
     # Return the values
     return order_tax, price_before_tax, price_after_tax
@@ -124,15 +124,17 @@ def print_bill(items, tax_amount, price_before_tax, price_after_tax):
     :return:
     '''
 
-    print("*" * 10)
-    print("Your bill:")
-    print("You ordered:")
     print()
+    print("Your bill:")
+    print("*" * 50)
+    print("You ordered: " + str(items))
+    print("*" * 50)
 
 def main():
     display_menu()
     user_input = get_inputs()
-    tax_amount, price_before_tax, price_after_tax = compute_bill(user_input)
+    tax_amount, price_before_tax, price_after_tax = compute_bill(user_input,
+                                                                 user_input[len(user_input)-1])
     print_bill(user_input, tax_amount, price_before_tax, price_after_tax)
     print(user_input)
     print(price_before_tax)
