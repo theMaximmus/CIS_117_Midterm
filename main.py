@@ -103,20 +103,20 @@ def compute_bill(user_input, isStudent):
 
     # Calculate the total bill
     price_before_tax = 0.0
-    for i in choices_amounts:
+    for i in range(len(choices_amounts)):
         price_before_tax += choices_amounts[i] * PRICES_LIST[i]
 
     # Apply taxes as needed
-    if isStudent:
-        order_tax = 0
+    if isStudent == True:
+        tax_amount = 0
     else:
-        order_tax = TAX * price_before_tax
+        tax_amount = TAX * price_before_tax
 
     # Calculate the price after tax
-    price_after_tax = price_before_tax + order_tax
+    price_after_tax = price_before_tax + tax_amount
 
     # Return the values
-    return order_tax, price_before_tax, price_after_tax
+    return tax_amount, price_before_tax, price_after_tax
 
 def print_bill(items, tax_amount, price_before_tax, price_after_tax):
     '''
@@ -129,6 +129,10 @@ def print_bill(items, tax_amount, price_before_tax, price_after_tax):
     print("*" * 50)
     print("You ordered: " + str(items))
     print("*" * 50)
+    print("Total before tax: %.2f" % price_before_tax)
+    print("Tax Amount: %.2f" % (tax_amount))
+    print("Total price after tax: %.2f" % price_after_tax)
+    return
 
 def main():
     display_menu()
