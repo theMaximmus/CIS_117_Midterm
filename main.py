@@ -36,32 +36,15 @@ def get_inputs():
     '''
 
     # Create a variable to keep track of the quantity of each item in the order
-    quantity1 = quantity2 = quantity3 = quantity4 = quantity5 = 0
-
-    # Create a flag variable
-    loopFlag = False
-
+    q1 = q2 = q3 = q4 = q5 = 0
+  
     # Loop through the input for the first time
-    while not loopFlag:
-        try:
-            # Ask for the choice of the burger or if the user wants to exit
-            user_menu_choice = int(input("What burger do you want? (Enter 1-5, 6 to exit): "))
-
-            # Check if user wants to exit and terminate the process (return a None value)
-            if (user_menu_choice == 6):
-                return 0, 0, 0, 0, 0, False
-            # End the loop
-            loopFlag = True
-        except ValueError:
-            print("Error, please enter numeric input.")
-
-    # Loop through the input for the second time
     while not loopFlag:
         while True:  
         try:
             # Ask for the choice of the burger or if the user wants to exit
             user_menu_choice = int(input("What burger do you want? (Enter 1-5, 6 to exit): "))
-            amount = int(input("Please input quantity"))
+            amount = int(input("Please input quantity: "))
             if (user_menu_choice == 1):
                 q1 += amount
             elif (user_menu_choice == 2):
@@ -87,7 +70,7 @@ def get_inputs():
           isStudent = False
 
     # Return the values
-    return quantity1, quantity2, quantity3, quantity4, quantity5, isStudent
+    return q1, q2, q3, q4, q5, isStudent
 
 def compute_bill(user_input, isStudent):
     '''
