@@ -56,7 +56,7 @@ def get_inputs():
                 q5 += amount
             # Check if user wants to exit and terminate the process (return a None value)
             if (user_menu_choice == 6):
-                return q1, q2, q3, q4, q5, False
+                return q1, q2, q3, q4, q5
             # End the loop
         except ValueError:
             print("Error, please enter numeric input.")
