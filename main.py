@@ -39,7 +39,7 @@ def get_inputs():
     q1 = q2 = q3 = q4 = q5 = 0
   
     # Loop through the input for the first time
-   while True: 
+    while True: 
         try:
             # Ask for the choice of the burger or if the user wants to exit
             user_menu_choice = int(input("What burger do you want? (Enter 1-5, 6 to exit): "))
