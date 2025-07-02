@@ -55,38 +55,36 @@ def get_inputs():
         except ValueError:
             print("Error, please enter numeric input.")
 
-    # Reset flag variable
-    loopFlag = False
-
     # Loop through the input for the second time
     while not loopFlag:
+        while True:  
         try:
-            # Ask for the quantity
-            amount = int(input("How many of it do you want? (Enter a number): "))
-
+            # Ask for the choice of the burger or if the user wants to exit
+            user_menu_choice = int(input("What burger do you want? (Enter 1-5, 6 to exit): "))
+            amount = int(input("Please input quantity"))
+            if (user_menu_choice == 1):
+                q1 += amount
+            elif (user_menu_choice == 2):
+                q2 += amount
+            elif (user_menu_choice == 3):
+                q3 += amount
+            elif (user_menu_choice == 4):
+                q4 += amount
+            elif (user_menu_choice == 5):
+                q5 += amount
+            # Check if user wants to exit and terminate the process (return a None value)
+            if (user_menu_choice == 6):
+                return q1, q2, q3, q4, q5, False
             # End the loop
-            loopFlag = True
         except ValueError:
             print("Error, please enter numeric input.")
 
-    # Determine what item was selected and add desired quantity
-    if (user_menu_choice == 1):
-        quantity1 += amount
-    elif (user_menu_choice == 2):
-        quantity2 += amount
-    elif (user_menu_choice == 3):
-        quantity3 += amount
-    elif (user_menu_choice == 4):
-        quantity4 += amount
-    elif (user_menu_choice == 5):
-        quantity5 += amount
-
     # Ask user if they are a Student
-    isStudentString = input("Are you a student? (y/n): ")
-    if (isStudentString == "y"):
-        isStudent = True
-    else:
-        isStudent = False
+      isStudentString = input("Are you a student? (y/n): ")
+      if (isStudentString == "y"):
+          isStudent = True
+      else:
+          isStudent = False
 
     # Return the values
     return quantity1, quantity2, quantity3, quantity4, quantity5, isStudent
