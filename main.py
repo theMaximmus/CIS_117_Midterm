@@ -54,9 +54,9 @@ def get_inputs():
             # Ask for the choice of the burger or if the user wants to exit
             user_menu_choice = int(input("What burger do you want? (Enter 1-5, 6 to exit): "))
             # invalidate user inputs less than 1 or greater than 6
-            if (user_menu_choice < 1 or useer_menu_choice > 6):
-              ("Invalid choice. What burger do you want? (Enter 1-5, 6 to exit): ")
-                continue
+            if (user_menu_choice < 1 or user_menu_choice > 6):
+              print("Invalid choice. What burger do you want? (Enter 1-5, 6 to exit): ")
+              continue
               
             # Check if user wants to exit and terminate the process (End the loop)
             if (user_menu_choice == 6):
