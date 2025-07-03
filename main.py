@@ -13,6 +13,8 @@ PRICES_LIST = [PRICE_DE_ANZA_BURGER, PRICE_BACON_CHEESE, PRICE_MUSHROOM_SWISS,
 # Constants for the tax
 TAX = 0.09
 
+BURGER_NAMES: ["De Anza Burger", "Bacon Cheese", "Mushroom Swiss", "Western Burger", "Don Cali Burger"]
+
 def display_menu():
     '''
     Displays the menu options for the Food Court
@@ -43,7 +45,7 @@ def get_inputs():
         try:
             # Ask for the choice of the burger or if the user wants to exit
             user_menu_choice = int(input("What burger do you want? (Enter 1-5, 6 to exit): "))
-            amount = int(input("Please input quantity"))
+            amount = int(input("Please input quantity: "))
             if (user_menu_choice == 1):
                 q1 += amount
             elif (user_menu_choice == 2):
@@ -82,8 +84,13 @@ def compute_bill(user_input, isStudent):
 
     # Calculate the total bill
     price_before_tax = 0.0
+    item_details = []
+  
     for i in range(len(choices_amounts)):
-        price_before_tax += choices_amounts[i] * PRICES_LIST[i]
+        if choices_amounts[i] > 0: 
+          item_total = choices_amounts[i] * PRICES_LIST[i]
+          price_before_tax += item_total
+          item_details.append((BURGER_NAMES[i], choices_amounts[i], item_total))
 
     # Apply taxes as needed
     if isStudent == True:
@@ -95,9 +102,9 @@ def compute_bill(user_input, isStudent):
     price_after_tax = price_before_tax + tax_amount
 
     # Return the values
-    return tax_amount, price_before_tax, price_after_tax
+    return item_details, tax_amount, price_before_tax, price_after_tax
 
-def print_bill(items, tax_amount, price_before_tax, price_after_tax):
+def print_bill(item_details, tax_amount, price_before_tax, price_after_tax):
     '''
     Prints the bill to the user
     :return:
@@ -106,7 +113,10 @@ def print_bill(items, tax_amount, price_before_tax, price_after_tax):
     print()
     print("Your bill:")
     print("*" * 50)
-    print("You ordered: " + str(items))
+  
+    for item in item_details: 
+      print(f"{item[0]} x {item[1]} - ${item[2]:.2f}")
+  
     print("*" * 50)
     print("Total before tax: %.2f" % price_before_tax)
     print("Tax Amount: %.2f" % (tax_amount))
@@ -116,9 +126,9 @@ def print_bill(items, tax_amount, price_before_tax, price_after_tax):
 def main():
     display_menu()
     user_input = get_inputs()
-    tax_amount, price_before_tax, price_after_tax = compute_bill(user_input,
+    item_details, tax_amount, price_before_tax, price_after_tax = compute_bill(user_input,
                                                                  user_input[len(user_input)-1])
-    print_bill(user_input, tax_amount, price_before_tax, price_after_tax)
+    print_bill(item_details, tax_amount, price_before_tax, price_after_tax)
     print(user_input)
     print(price_before_tax)
     print(price_after_tax)
