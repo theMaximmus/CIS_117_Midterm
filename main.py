@@ -118,9 +118,9 @@ def print_bill(item_details, tax_amount, price_before_tax, price_after_tax):
       print(f"{item[0]} x {item[1]} - ${item[2]:.2f}")
   
     print("*" * 50)
-    print("Total before tax: %.2f" % price_before_tax)
-    print("Tax Amount: %.2f" % (tax_amount))
-    print("Total price after tax: %.2f" % price_after_tax)
+    print("Total before tax: $%.2f" % price_before_tax)
+    print("Tax Amount: $%.2f" % (tax_amount))
+    print("Total price after tax: $%.2f" % price_after_tax)
     return
 
 def main():
