@@ -13,7 +13,7 @@ PRICES_LIST = [PRICE_DE_ANZA_BURGER, PRICE_BACON_CHEESE, PRICE_MUSHROOM_SWISS,
 # Constants for the tax
 TAX = 0.09
 
-BURGER_NAMES: ["De Anza Burger", "Bacon Cheese", "Mushroom Swiss", "Western Burger", "Don Cali Burger"]
+BURGER_NAMES = ["De Anza Burger", "Bacon Cheese", "Mushroom Swiss", "Western Burger", "Don Cali Burger"]
 
 def display_menu():
     '''
