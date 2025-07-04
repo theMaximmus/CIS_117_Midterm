@@ -262,9 +262,9 @@ Please choose from the following:
 6. Exit
 **********
 What burger do you want? (Enter 1-5, 6 to exit): -1
-Invalid choice. What burger do you want? (Enter 1-5, 6 to exit): 
+Invalid choice.  
 What burger do you want? (Enter 1-5, 6 to exit): 0
-Invalid choice. What burger do you want? (Enter 1-5, 6 to exit): 
+Invalid choice.  
 What burger do you want? (Enter 1-5, 6 to exit): 1
 Please input quantity: -1
 Invalid quantity. Please enter a non-negative quantity.
